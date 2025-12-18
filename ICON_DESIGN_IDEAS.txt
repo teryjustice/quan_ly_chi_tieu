@@ -1,0 +1,61 @@
+/**
+ * 🎨 ICON APP DESIGN GUIDE
+ * 
+ * Tạo icon app của bạn theo hướng dẫn này
+ * 
+ * DESIGN SPECS:
+ * - Kích thước: 1024x1024 pixels
+ * - Format: PNG (nền trong suốt)
+ * - Safe Zone: 180x180 pixels ở giữa
+ * - Theme Color: #D82D8B (Momo Pink)
+ * 
+ * Ý TƯỞNG ICON:
+ * 1. Ví tiền (Wallet icon)
+ *    - Hình chữ nhật bo góc
+ *    - Màu hồng #D82D8B
+ *    - Có đồng xu/tiền vàng phía trên
+ * 
+ * 2. Biểu đồ + Tiền
+ *    - Kết hợp icon chart + đồng tiền
+ *    - Màu gradient hồng
+ * 
+ * 3. Cây tiền (Money Tree)
+ *    - Thân cây + lá hình tiền
+ *    - Tượng trưng tài chính phát triển
+ * 
+ * CÔNG CỤ TẠOICON:
+ * ✅ Figma (https://figma.com) - Free
+ * ✅ Canva (https://canva.com) - Free templates
+ * ✅ Affinity Designer - Paid
+ * ✅ Adobe XD - Paid
+ */
+
+// HƯỚNG DẪN QUICK: TẠO ICON VỚI FIGMA
+
+/*
+1. Vào https://figma.com
+2. Tạo file mới (1024x1024)
+3. Thiết kế icon (ví dụ):
+   - Shape: Rectangle bo góc (800x600)
+   - Màu: #D82D8B
+   - Icon: Wallet + Coins
+   - Text: Optional (tên viết tắt như "QLT")
+4. Export as PNG (1024x1024)
+5. Download → assets/icons/app_icon.png
+*/
+
+/*
+ * TÙYTHẾ ICON ĐẦU:
+ * 
+ * Nếu bạn muốn icon đơn giản:
+ * - Chỉ cần hình ví tiền hoặc biểu tượng tiền
+ * - Màu chủ đạo: #D82D8B (Momo)
+ * - Nền: Trong suốt hoặc gradient nhẹ
+ * 
+ * FINAL CHECKLIST:
+ * ✓ File PNG 1024x1024
+ * ✓ Nền trong suốt
+ * ✓ Đặt file vào: assets/icons/app_icon.png
+ * ✓ Chạy: flutter pub run flutter_launcher_icons
+ * ✓ flutter clean && flutter run
+ */

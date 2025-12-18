@@ -1,0 +1,66 @@
+name: quan_ly_chi_tieu
+description: Ung dung quan ly chi tieu ca nhan.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+
+  # --- FIREBASE & AUTH ---
+  firebase_core: ^2.27.0
+  cloud_firestore: ^4.15.8
+  firebase_auth: ^4.17.8
+
+  # --- STATE MANAGEMENT ---
+  flutter_riverpod: ^2.4.9
+
+  # --- LOCALIZATION ---
+  flutter_localizations:
+    sdk: flutter
+
+  # --- AI & TIỆN ÍCH ---
+  intl: ^0.20.0           # Format ngày tháng/tiền tệ
+  http: ^1.2.1            # Yêu cầu HTTP
+  google_generative_ai: ^0.4.7 # Thư viện AI (Dùng cho logic của AIService)
+  fl_chart: ^0.66.0       # Biểu đồ và chơi năng
+  shared_preferences: ^2.0.20
+  flutter_dotenv: ^5.1.0  # Đọc file .env
+  image_picker: ^0.8.7+5  # Chọn ảnh từ gallery/camera
+  firebase_storage: ^11.0.7 # Lưu ảnh lên Firebase Storage
+  uuid: ^4.0.0            # Để tạo ID duy nhất cho giao dịch
+  flutter_local_notifications: ^17.0.0
+  firebase_messaging: ^14.8.0
+  mobile_scanner: ^4.0.1  # QR Code Scanner
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.13.1 # Plugin tạo icon ứng dụng
+
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icons/app_icon.png"
+  background_color: "#FFFFFF"
+  min_sdk_android: 21
+
+# ---------------------------------------------
+# CẤU HÌNH ASSETS (HÌNH ẢNH, FILE .ENV)
+# ⚠️ assets/icons/app_icon.jpg tạm thời bị lỗi
+# Sẽ được kích hoạt lại sau khi có file ảnh hợp lệ
+# ---------------------------------------------
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - assets/icons/app_icon.png    # Logo ứng dụng
+    - .env             # File môi trường (API Key)
