@@ -25,7 +25,9 @@ public class AppiumLoginTest {
                 .setAutomationName("UiAutomator2")
                 // Path to the built flutter apk. You should run "flutter build apk" first.
                 .setApp(System.getProperty("user.dir") + "/../build/app/outputs/flutter-apk/app-debug.apk")
-                .setNoReset(false);
+                .setNoReset(true);
+        options.setCapability("appium:ignoreHiddenApiPolicyError", true);
+        options.setCapability("appium:noSign", true);
 
         // Standard Appium server URL
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(), options);

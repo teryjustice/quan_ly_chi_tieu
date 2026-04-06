@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+Test set: com.quanlychitieu.tests.AppiumLoginTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.023 s <<< FAILURE! -- in com.quanlychitieu.tests.AppiumLoginTest
+com.quanlychitieu.tests.AppiumLoginTest.testLoginScreenRenders -- Time elapsed: 0.021 s <<< ERROR!
+org.openqa.selenium.SessionNotCreatedException: 
+Could not start a new session. Response code 500. Message: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details 
+Host info: host: 'DESKTOP-PLDB90B', ip: '192.168.1.193'
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:noReset=true, appium:ignoreHiddenApiPolicyError=true, appium:noSign=true, platformName=ANDROID, appium:automationName=UiAutomator2, appium:app=C:\Users\TERY\Documents\GitHub\quan_ly_chi_tieu\appium_junit5_tests/../build/app/outputs/flutter-apk/app-debug.apk}], desiredCapabilities=Capabilities {appium:app: C:\Users\TERY\Documents\Git..., appium:automationName: UiAutomator2, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:noSign: true, platformName: ANDROID}}]
+Capabilities {appium:app: C:\Users\TERY\Documents\Git..., appium:automationName: UiAutomator2, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:noSign: true, platformName: ANDROID}
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:140)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:133)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:102)
+	at io.appium.java_client.remote.AppiumCommandExecutor.createSession(AppiumCommandExecutor.java:182)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+	at io.appium.java_client.AppiumDriver.startSession(AppiumDriver.java:274)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:163)
+	at io.appium.java_client.AppiumDriver.<init>(AppiumDriver.java:89)
+	at io.appium.java_client.AppiumDriver.<init>(AppiumDriver.java:101)
+	at io.appium.java_client.android.AndroidDriver.<init>(AndroidDriver.java:113)
+	at com.quanlychitieu.tests.AppiumLoginTest.setUp(AppiumLoginTest.java:33)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.base/java.util.ArrayList.forEach(Unknown Source)
+	at java.base/java.util.ArrayList.forEach(Unknown Source)
+

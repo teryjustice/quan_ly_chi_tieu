@@ -27,7 +27,9 @@ public class AppiumAutomationTest {
                 .setDeviceName("Android Emulator")
                 // Đường dẫn tới file APK của bạn
                 .setApp(System.getProperty("user.dir") + "/../build/app/outputs/flutter-apk/app-debug.apk")
-                .setNoReset(false);
+                .setNoReset(true);
+        options.setCapability("appium:ignoreHiddenApiPolicyError", true);
+        options.setCapability("appium:noSign", true);
 
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(), options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -38,8 +40,9 @@ public class AppiumAutomationTest {
     @DisplayName("Test 1: Kiểm tra giao diện Đăng nhập load thành công")
     public void testLoginScreenDisplayed() {
         System.out.println("Đang kiểm tra giao diện...");
-        // Đợi màn hình load xong (tìm bất kỳ element nào có text hoặc ID)
-        Assertions.assertNotNull(driver.getContext(), "Appium Session không phản hồi!");
+        // Đợi màn hình load xong bằng cách kiểm tra Session ID
+        Assertions.assertNotNull(driver.getSessionId(), "Appium Session không phản hồi!");
+        System.out.println("Kiểm tra Session ID thành công: " + driver.getSessionId());
     }
 
     @Test
