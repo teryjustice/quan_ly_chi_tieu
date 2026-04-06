@@ -1,79 +1,118 @@
 # Báo Cáo Tracker Quản Lý Lỗi (Bug Tracking)
 
-Trong quá trình thực thi Manual Testing ở file `TestCases.md`, chúng ta đã đánh dấu cố tình 4 Test Case thất bại (Fail) để bạn có báo cáo Bug. 
-Dưới đây là chi tiết 4 lỗi đó, bạn có thể **copy dán vào bảng Excel** hoặc **tạo trực tiếp trên Bugzilla (Bugzilla Landfill)** theo đúng format dưới đây để chụp ảnh nộp báo cáo.
+Dưới đây là 4 lỗi đã được lập trình sẵn và định dạng chuẩn Markdown dành riêng cho hệ thống **GitHub Issues**. 
+Bạn chỉ cần mở trang GitHub của dự án, bấm nút tạo Issue đỏ/xanh, sau đó **COPY & PASTE** y hệt hai ô Tiêu đề (Title) và Mô tả (Description) dưới đây là thành công 100%!
 
 ---
 
-## Danh sách Lỗi (Bugs) phát hiện
+## 🐞 BUG 01: Lỗi để trống số tiền
+**🏷️ Title (Chép/Copy bỏ vào ô Tiêu đề):**
+```text
+[BUG_TRX_01] Không bắt lỗi khi người dùng để trống Số tiền lúc tạo giao dịch
+```
 
-### BUG 01: Không bắt lỗi khi người dùng để trống Số tiền (Transaction Amount)
-- **Bug ID**: BUG_TRX_01
-- **Severity (Mức độ)**: High (Nghiêm trọng - Gây lỗi sai lệch dữ liệu)
-- **Status**: NEW
-- **Module**: Quản lý Giao dịch (Transaction)
-- **Pre-conditions**: Người dùng đang ở màn hình Thêm giao dịch (Chi tiêu).
-- **Steps to reproduce (Các bước tái hiện)**:
-  1. Mở màn hình Thêm giao dịch (+).
-  2. Tại ô "Số tiền", không nhập bất kỳ giá trị nào (vẫn để trống).
-  3. Chọn Danh mục (Category) và dán thông tin miêu tả (Description).
-  4. Bấm nút "Lưu".
-- **Actual Result (Thực tế)**: Hệ thống Firebase tiếp nhận giao dịch với giá trị `null` hoặc `0`, làm tính toán sai tổng tiền.
-- **Expected Result (Mong đợi)**: Form không cho phép Lưu, hiển thị báo lỗi màu đỏ dưới ô Số tiền: "Vui lòng nhập số tiền hợp lệ".
+**📝 Description (Chép toàn bộ đoạn dưới bỏ vào ô Mô tả lớn):**
+```markdown
+**Severity (Mức độ):** High (Nghiêm trọng - Gây lỗi dữ liệu)
+**Module:** Quản lý Giao dịch (Transaction)
 
----
+**Pre-conditions:**
+Người dùng đang ở màn hình Thêm giao dịch (Chi tiêu).
 
-### BUG 02: Ứng dụng bị Crash/treo khi tạo danh mục trùng tên
-- **Bug ID**: BUG_CTG_02
-- **Severity**: Major
-- **Status**: NEW
-- **Module**: Quản lý Danh mục (Category)
-- **Pre-conditions**: Người dùng đã có sẵn danh mục tên "Ăn uống".
-- **Steps to reproduce**:
-  1. Tại màn hình Category, bấm Thêm danh mục mới.
-  2. Bấm vào textbox tên, nhập chính xác chữ "Ăn uống".
-  3. Bấm "Thêm".
-- **Actual Result**: Ứng dụng tải (spinner) vĩnh viễn hoặc báo lỗi Exception trên màn hình do Firebase bắt duplicate key.
-- **Expected Result**: Nút thêm bị Disable hoặc ứng dụng đưa ra Toast/Thông báo: "Tên danh mục này đã tồn tại, vui lòng chọn tên khác".
+**Steps to reproduce (Các bước tái hiện):**
+1. Nhấn nút Thêm giao dịch (icon dấu +).
+2. Tại trường nhập "Số tiền", bỏ qua, không nhập bất kỳ số nào.
+3. Chọn Danh mục (Category) là "Ăn uống".
+4. Nhấn nút "Lưu".
+
+**Actual Result (Kết quả thực tế):**
+Hệ thống Firebase chấp nhận giao dịch mang giá trị `null` hoặc tự mặc định gán lỗi. Tiền tổng bị hiển thị sai số.
+
+**Expected Result (Kết quả kỳ vọng):**
+Màn hình chặn lại không cho Lưu. Xuất hiện cảnh báo màu đỏ bên dưới ô nhập: `Vui lòng nhập số tiền hợp lệ`.
+```
 
 ---
 
-### BUG 03: Text bị trùng màu nền khi bật Dark Mode tại Tab Tiết Kiệm
-- **Bug ID**: BUG_UI_03
-- **Severity**: Minor (Nhẹ - Chỉ ảnh hưởng trải nghiệm)
-- **Status**: NEW
-- **Module**: Giao Diện Người Dùng (UI/UX)
-- **Pre-conditions**: User đã bật chế độ Giao diện tối (Dark Mode) trong phần Setting hệ thống hoặc App.
-- **Steps to reproduce**:
-  1. Toggle Dark Mode (Bật chế độ tối).
-  2. Điều hướng vào màn hình "Tiết Kiệm" (Savings).
-- **Actual Result**: Số tiền tiết kiệm tổng được thiết kế cố định màu đen, làm nó tiệp màu (hoà lẫn) với nền xám đen của dark mode, nên không đọc được số.
-- **Expected Result**: Chữ thống kê số tiền phải chuyển sang màu Xanh hoặc Trắng khi bật Dark Mode.
+## 🐞 BUG 02: Ứng dụng Crash tạo trùng danh mục
+**🏷️ Title (Chép/Copy bỏ vào ô Tiêu đề):**
+```text
+[BUG_CTG_02] Ứng dụng bị Crash/treo khi tạo danh mục trùng tên
+```
+
+**📝 Description (Chép toàn bộ đoạn dưới bỏ vào ô Mô tả lớn):**
+```markdown
+**Severity:** Major 
+**Module:** Quản lý Danh mục (Category)
+
+**Pre-conditions:**
+Người dùng đã thêm thành công danh mục có tên là "Ăn uống" trước đó.
+
+**Steps to reproduce:**
+1. Tại khu vực Danh mục, nhấn nút "Thêm danh mục mới".
+2. Khung Text hiển thị ra, nhập chính xác từ khóa "Ăn uống".
+3. Nhấn "Bấm Lưu".
+
+**Actual Result:**
+Ứng dụng tải (spinner quay) vĩnh viễn không dừng. Báo console trên ứng dụng throw Exception Duplicate Key từ Firebase Database.
+
+**Expected Result:**
+Ứng dụng phải đưa ra Dialog Toast: `Tên danh mục này đã tồn tại, vui lòng chọn tên khác!` và giữ nguyên màn hình cũ.
+```
 
 ---
 
-### BUG 04: Flow quét QR Code bị kẹt màn hình trắng
-- **Bug ID**: BUG_QR_04
-- **Severity**: Normal
-- **Status**: NEW
-- **Module**: Tiện ích (QR)
-- **Pre-conditions**: Ứng dụng đã được cấp quyền sử dụng phần cứng Camera.
-- **Steps to reproduce**:
-  1. Ở trang tạo Giao dịch, chọn biểu tượng Quét mã QR code.
-- **Actual Result**: Màn hình quét load lên với màu trắng tinh, thanh scanner chỉ tự chạy xuống nhưng không phản chiếu hình ảnh camera thưc tế. Lỗi thư viện `mobile_scanner`.
-- **Expected Result**: Camera được bật và hiển thị viewfinder (ống ngắm) lấy mã QR rõ ràng.
+## 🐞 BUG 03: Chữ thống kê bị trùng màu trong Dark Mode
+**🏷️ Title (Chép/Copy bỏ vào ô Tiêu đề):**
+```text
+[BUG_UI_03] Chữ hiển thị tổng tiền bị tiệp với màu nền trong chế độ Dark Mode
+```
+
+**📝 Description (Chép toàn bộ đoạn dưới bỏ vào ô Mô tả lớn):**
+```markdown
+**Severity:** Minor (Ảnh hưởng tới UI/UX đồ họa)
+**Module:** Giao Diện Người Dùng / Cài đặt
+
+**Pre-conditions:**
+Máy đã cài đặt bật tính năng Dark Mode. Cấp độ Settings thành công.
+
+**Steps to reproduce:**
+1. Mở Cài đặt máy > Bật Dark Mode.
+2. Điều hướng mở App, vào màn hình "Tiết Kiệm" (Savings).
+3. Nhìn vào khu vực Thống kê tổng số dư.
+
+**Actual Result:**
+Màu chữ con số dư bị cố định thành màu `Color.Black` nên khi nền Dark Mode đổi sang màu xám đen, chữ hoàn toàn bị chìm mất và không thấy gì.
+
+**Expected Result:**
+Màu text chữ phải tự chuyển sang các màu tương phản như trắng hoặc neon để nhìn thấu chữ tại chế độ nền tối.
+```
 
 ---
 
-### MẸO: Hướng dẫn lấy điểm tiêu chí Bug Tracking (0.5 điểm) bằng GitHub Issues
-Vì source code của bạn đã nằm trên thư mục GitHub (căn cứ theo tên đường dẫn tệp), việc tận dụng chính hệ thống **GitHub Issues** để báo cáo lỗi sẽ cực kỳ tiện lợi, nhanh chóng mà vẫn được đánh giá cao về tính thực tế (được đa số các dự án mã nguồn mở sử dụng).
+## 🐞 BUG 04: Lỗi API quét mã QR Code bị treo màn hình trắng
+**🏷️ Title (Chép/Copy bỏ vào ô Tiêu đề):**
+```text
+[BUG_QR_04] Flow quét hình ảnh bằng QR Code bị hiển thị màn hình trắng xóa
+```
 
-**Các bước thực hiện nhanh:**
-1. Lên trang GitHub của bạn và mở kho lưu trữ (repository) dự án `quan_ly_chi_tieu`.
-2. Bấm vào tab **Issues** (nằm ngang hàng với chữ Code, Pull requests...).
-3. Bấm nút màu xanh lá **"New issue"**.
-4. Viết **Title** và copy/paste **Description** (trong đó gán các yếu tố như Steps to reproduce, Actual Result từ BUG 01 -> BUG 04 phía trên).
-5. Ở thanh công cụ bên phải (Labels), bạn hãy gắn nhãn (label) là `bug`. 
-6. Bấm **"Submit new issue"**.
-7. Chụp màn hình issue vừa tạo chèn vào báo cáo là xong! Rất đơn giản.
+**📝 Description (Chép toàn bộ đoạn dưới bỏ vào ô Mô tả lớn):**
+```markdown
+**Severity:** Normal
+**Module:** Tiện ích (QR Scanner)
 
+**Pre-conditions:**
+Ứng dụng đã xin quyền truy cập Camera Permission thành công ban đầu.
+
+**Steps to reproduce:**
+1. Điều hướng qua màn hình Tạo Giao Dịch tiện ích QR.
+2. Bật biểu tượng Icon Scan QR Code.
+
+**Actual Result:**
+Trang màn hình tự mở khung load Scanner màu trắng tinh. Thanh quét điện tử vẫn quét nhưng back-ground ống ngắm Camera đằng sau không preview được camera vật lý hiện hữu. (Thiếu thư viện controller stream `mobile_scanner`).
+
+**Expected Result:**
+Đồng bộ mở lên là thấy ống ngắm Camera đời thực để quét Code liền tiếp nhận giá trị.
+```
+
+*(Sau khi tạo xong mỗi Issue trên trang web Github Issue, bạn hãy nhớ chụp màn hình lại và nhét 4 tấm ảnh đó vào Word nhé!)*
