@@ -1,118 +1,141 @@
-# Báo Cáo Tracker Quản Lý Lỗi (Bug Tracking)
+# Báo Cáo Tracker Quản Lý Lỗi (Bug Tracking) - GitHub Issues
 
-Dưới đây là 4 lỗi đã được lập trình sẵn và định dạng chuẩn Markdown dành riêng cho hệ thống **GitHub Issues**. 
-Bạn chỉ cần mở trang GitHub của dự án, bấm nút tạo Issue đỏ/xanh, sau đó **COPY & PASTE** y hệt hai ô Tiêu đề (Title) và Mô tả (Description) dưới đây là thành công 100%!
+Dưới đây là 7 lỗi được phát hiện qua quá trình kiểm thử, định dạng chuẩn Markdown dành riêng cho hệ thống **GitHub Issues**. Bạn chỉ cần COPY & PASTE tiêu đề và mô tả vào GitHub.
 
 ---
 
-## 🐞 BUG 01: Lỗi để trống số tiền
-**🏷️ Title (Chép/Copy bỏ vào ô Tiêu đề):**
-```text
-[BUG_TRX_01] Không bắt lỗi khi người dùng để trống Số tiền lúc tạo giao dịch
-```
+## 🐞 BUG 01: Số tiền bỏ trống không báo lỗi
+**🏷️ Title:** `[BUG_TRX_10] Thêm giao dịch với số tiền bỏ trống không hiển thị cảnh báo`
 
-**📝 Description (Chép toàn bộ đoạn dưới bỏ vào ô Mô tả lớn):**
+**📝 Description:**
 ```markdown
-**Severity (Mức độ):** High (Nghiêm trọng - Gây lỗi dữ liệu)
-**Module:** Quản lý Giao dịch (Transaction)
+**Severity:** High (Nghiêm trọng)
+**Module:** Thêm Giao Dịch (Transaction)
 
-**Pre-conditions:**
-Người dùng đang ở màn hình Thêm giao dịch (Chi tiêu).
+**Pre-conditions:** Người dùng đã đăng nhập thành công.
 
-**Steps to reproduce (Các bước tái hiện):**
-1. Nhấn nút Thêm giao dịch (icon dấu +).
-2. Tại trường nhập "Số tiền", bỏ qua, không nhập bất kỳ số nào.
-3. Chọn Danh mục (Category) là "Ăn uống".
+**Steps to reproduce:**
+1. Nhấn nút (+) để thêm giao dịch.
+2. Để TRỐNG ô "Số tiền".
+3. Điền mô tả và chọn danh mục bất kỳ.
 4. Nhấn nút "Lưu".
 
-**Actual Result (Kết quả thực tế):**
-Hệ thống Firebase chấp nhận giao dịch mang giá trị `null` hoặc tự mặc định gán lỗi. Tiền tổng bị hiển thị sai số.
-
-**Expected Result (Kết quả kỳ vọng):**
-Màn hình chặn lại không cho Lưu. Xuất hiện cảnh báo màu đỏ bên dưới ô nhập: `Vui lòng nhập số tiền hợp lệ`.
+**Actual Result:** Giao dịch được lưu với giá trị null/0 hoặc ứng dụng không phản hồi gì, không báo lỗi.
+**Expected Result:** Nút Lưu bị disable hoặc hiển thị cảnh báo "Vui lòng nhập số tiền lớn hơn 0".
 ```
 
 ---
 
-## 🐞 BUG 02: Ứng dụng Crash tạo trùng danh mục
-**🏷️ Title (Chép/Copy bỏ vào ô Tiêu đề):**
-```text
-[BUG_CTG_02] Ứng dụng bị Crash/treo khi tạo danh mục trùng tên
-```
+## 🐞 BUG 02: Tạo danh mục trùng tên
+**🏷️ Title:** `[BUG_CTG_15] Cho phép tạo danh mục trùng tên - Không báo lỗi tồn tại`
 
-**📝 Description (Chép toàn bộ đoạn dưới bỏ vào ô Mô tả lớn):**
+**📝 Description:**
 ```markdown
-**Severity:** Major 
-**Module:** Quản lý Danh mục (Category)
-
-**Pre-conditions:**
-Người dùng đã thêm thành công danh mục có tên là "Ăn uống" trước đó.
+**Severity:** Medium
+**Module:** Danh Mục (Category)
 
 **Steps to reproduce:**
-1. Tại khu vực Danh mục, nhấn nút "Thêm danh mục mới".
-2. Khung Text hiển thị ra, nhập chính xác từ khóa "Ăn uống".
-3. Nhấn "Bấm Lưu".
+1. Vào mục Danh mục.
+2. Bấm "Thêm danh mục mới".
+3. Nhập tên "Ăn uống" (tên này đã có sẵn trong list).
+4. Nhấn "Lưu".
 
-**Actual Result:**
-Ứng dụng tải (spinner quay) vĩnh viễn không dừng. Báo console trên ứng dụng throw Exception Duplicate Key từ Firebase Database.
-
-**Expected Result:**
-Ứng dụng phải đưa ra Dialog Toast: `Tên danh mục này đã tồn tại, vui lòng chọn tên khác!` và giữ nguyên màn hình cũ.
+**Actual Result:** Hệ thống tạo thêm một danh mục mới trùng hoàn toàn tên với danh mục cũ.
+**Expected Result:** Hệ thống báo lỗi "Danh mục đã tồn tại" và không cho phép lưu trùng.
 ```
 
 ---
 
-## 🐞 BUG 03: Chữ thống kê bị trùng màu trong Dark Mode
-**🏷️ Title (Chép/Copy bỏ vào ô Tiêu đề):**
-```text
-[BUG_UI_03] Chữ hiển thị tổng tiền bị tiệp với màu nền trong chế độ Dark Mode
-```
+## 🐞 BUG 03: Lỗi hiển thị Dark Mode (Text bị tiệp màu)
+**🏷️ Title:** `[BUG_UI_22] Các con số thống kê bị tàng hình khi bật Dark Mode`
 
-**📝 Description (Chép toàn bộ đoạn dưới bỏ vào ô Mô tả lớn):**
+**📝 Description:**
 ```markdown
-**Severity:** Minor (Ảnh hưởng tới UI/UX đồ họa)
-**Module:** Giao Diện Người Dùng / Cài đặt
-
-**Pre-conditions:**
-Máy đã cài đặt bật tính năng Dark Mode. Cấp độ Settings thành công.
+**Severity:** High (Ảnh hưởng trải nghiệm người dùng)
+**Module:** Giao Diện (UI/UX)
 
 **Steps to reproduce:**
-1. Mở Cài đặt máy > Bật Dark Mode.
-2. Điều hướng mở App, vào màn hình "Tiết Kiệm" (Savings).
-3. Nhìn vào khu vực Thống kê tổng số dư.
+1. Vào màn hình Profile.
+2. Gạt Switch "Dark Mode" sang ON.
+3. Quay lại màn hình Dashboard hoặc Tiết kiệm.
 
-**Actual Result:**
-Màu chữ con số dư bị cố định thành màu `Color.Black` nên khi nền Dark Mode đổi sang màu xám đen, chữ hoàn toàn bị chìm mất và không thấy gì.
-
-**Expected Result:**
-Màu text chữ phải tự chuyển sang các màu tương phản như trắng hoặc neon để nhìn thấu chữ tại chế độ nền tối.
+**Actual Result:** Màu nền chuyển sang đen/xám tối nhưng text số dư vẫn là màu đen, khiến người dùng không đọc được số tiền.
+**Expected Result:** Toàn bộ Text phải tự động chuyển sang màu trắng hoặc màu tương phản khi ở chế độ nền tối.
 ```
 
 ---
 
-## 🐞 BUG 04: Lỗi API quét mã QR Code bị treo màn hình trắng
-**🏷️ Title (Chép/Copy bỏ vào ô Tiêu đề):**
-```text
-[BUG_QR_04] Flow quét hình ảnh bằng QR Code bị hiển thị màn hình trắng xóa
-```
+## 🐞 BUG 04: QR Code không parse được số tiền
+**🏷️ Title:** `[BUG_QR_20] Tính năng quét QR Code không tự động điền số tiền`
 
-**📝 Description (Chép toàn bộ đoạn dưới bỏ vào ô Mô tả lớn):**
+**📝 Description:**
 ```markdown
-**Severity:** Normal
+**Severity:** Low/Medium
 **Module:** Tiện ích (QR Scanner)
 
-**Pre-conditions:**
-Ứng dụng đã xin quyền truy cập Camera Permission thành công ban đầu.
-
 **Steps to reproduce:**
-1. Điều hướng qua màn hình Tạo Giao Dịch tiện ích QR.
-2. Bật biểu tượng Icon Scan QR Code.
+1. Mở màn hình Thêm giao dịch.
+2. Chọn biểu tượng Quét QR.
+3. Quét một mã QR chuẩn (VNPAY/MoMo).
 
-**Actual Result:**
-Trang màn hình tự mở khung load Scanner màu trắng tinh. Thanh quét điện tử vẫn quét nhưng back-ground ống ngắm Camera đằng sau không preview được camera vật lý hiện hữu. (Thiếu thư viện controller stream `mobile_scanner`).
-
-**Expected Result:**
-Đồng bộ mở lên là thấy ống ngắm Camera đời thực để quét Code liền tiếp nhận giá trị.
+**Actual Result:** Ứng dụng mở camera quét thành công nhưng ô "Số tiền" vẫn trống không.
+**Expected Result:** Ứng dụng phải đọc được chuỗi số tiền từ mã QR và điền tự động vào form.
 ```
 
-*(Sau khi tạo xong mỗi Issue trên trang web Github Issue, bạn hãy nhớ chụp màn hình lại và nhét 4 tấm ảnh đó vào Word nhé!)*
+---
+
+## 🐞 BUG 05: Tìm kiếm phân biệt hoa thường (Case Sensitive)
+**🏷️ Title:** `[BUG_SRCH_05] Tính năng tìm kiếm không trả về kết quả nếu viết sai định dạng hoa thường`
+
+**📝 Description:**
+```markdown
+**Severity:** Low
+**Module:** Tìm kiếm (Search)
+
+**Steps to reproduce:**
+1. Có một giao dịch tên là "Ăn Uống".
+2. Vào ô tìm kiếm nhập "ăn uống" (viết thường hết).
+
+**Actual Result:** Hệ thống báo "Không tìm thấy kết quả".
+**Expected Result:** Hệ thống phải trả về kết quả bất kể người dùng viết hoa hay viết thường.
+```
+
+---
+
+## 🐞 BUG 06: Logic ngày tháng sai (Cho phép chi cho tương lai)
+**🏷️ Title:** `[BUG_DATE_06] Cho phép chọn ngày tương lai cho các khoản chi tiêu`
+
+**📝 Description:**
+```markdown
+**Severity:** Medium
+**Module:** Date Picker
+
+**Steps to reproduce:**
+1. Vào Thêm giao dịch chi tiêu.
+2. Chọn ngày giao dịch là một ngày trong tương lai (ví dụ: ngày mai).
+3. Nhấn Lưu.
+
+**Actual Result:** App vẫn cho phép lưu và trừ tiền vào số dư hiện tại.
+**Expected Result:** Cảnh báo "Không thể chi tiêu cho ngày tương lai" hoặc disable các ngày tương lai trong lịch.
+```
+
+---
+
+## 🐞 BUG 07: Ứng dụng bị Crash khi xuất PDF
+**🏷️ Title:** `[BUG_RPT_07] App bị văng (Crash) ngay lập tức khi nhấn nút xuất báo cáo PDF`
+
+**📝 Description:**
+```markdown
+**Severity:** Critical (Nghiêm trọng nhất)
+**Module:** Báo Cáo (Report)
+
+**Steps to reproduce:**
+1. Vào màn hình Thống kê/Báo cáo.
+2. Nhấn vào biểu tượng PDF (Export).
+
+**Actual Result:** Ứng dụng dừng đột ngột và thoát ra màn hình chính của điện thoại.
+**Expected Result:** Hệ thống xử lý và hiển thị thông báo "Đã xuất file PDF thành công".
+```
+
+---
+*(Hãy copy từng cặp Title/Description này lên GitHub Issues của bạn để hoàn tất bài nộp!)*

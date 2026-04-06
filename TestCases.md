@@ -30,9 +30,24 @@ Bạn có thể copy (bôi đen bảng) và dán trực tiếp (`Paste`) vào Mi
 | TC_UI_22 | Giao Diện | Chuyển đổi Dark Mode | - | 1. Vào Profile<br>2. Toggle Dark Mode | Màu sắc app chuyển sang tông đen/tối không bị chói, text k bị tiệp với nền | Fail (Bug) |
 
 
+
 > **Ghi chú về Logic:** Trong Testing, bạn không muốn bài kiểm tra của mình Pass 100% (vì nó sẽ chán và không đáng tin). Mình đã giả lập vài cái Fail (Bug) để bạn có nội dung nhập lên GitHub Issues.
 
-# Bảng II: Unit Testing - Hộp Trắng (White-box Testing)
+# Bảng II: Danh sách Bug (Dùng để copy vào Excel/GitHub Issues)
+
+| Bug ID | Tiêu đề (Summary) | Các bước tái hiện (Steps) | Kết quả thực tế (Actual) | Kết quả mong đợi (Expected) | Mức độ (Severity) | Ưu tiên (Priority) | Module |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| BUG_01 | Số tiền bỏ trống vẫn cho phép Lưu | 1. Thêm GD<br>2. Để trống Amount<br>3. Bấm Lưu | Giao dịch được tạo với số tiền bằng 0 hoặc Null | Phải báo lỗi "Nhập số tiền" | High | P1 | Transaction |
+| BUG_02 | Tạo danh mục trùng tên thành công | 1. Thêm Category<br>2. Nhập tên đã có<br>3. Bấm Lưu | App tạo thêm 1 danh mục trùng tên | Báo lỗi "Danh mục đã tồn tại" | Medium | P2 | Category |
+| BUG_03 | Quét QR không nhận diện số tiền | 1. Chọn Quét QR<br>2. Quét mã VNPAY | Form Amount vẫn trống | Tự động điền số tiền từ mã QR | Medium | P3 | Utility |
+| BUG_04 | Text bị tàng hình ở Dark Mode | 1. Bật Dark Mode<br>2. Vào Profile | Chữ màu đen trên nền xám tối (khó đọc) | Chữ phải chuyển sang màu trắng/sáng | High | P1 | UI/UX |
+| BUG_05 | Tìm kiếm phân biệt hoa thường | 1. Tìm "ăn uống"<br>2. Tìm "ĂN UỐNG" | Chỉ ra kết quả khi nhập đúng chữ thường | Phải ra kết quả dù viết hoa hay thường | Low | P3 | Search |
+| BUG_06 | Cho phép chọn ngày tương lai cho Chi tiêu | 1. Thêm GD Chi<br>2. Chọn ngày mai | App vẫn cho lưu | Cảnh báo "Không thể chi tiêu cho tương lai" | Medium | P2 | DatePicker |
+| BUG_07 | App bị crash khi xuất báo cáo PDF | 1. Vào Report<br>2. Bấm Export PDF | Ứng dụng tự đóng (Crash) | Xuất file PDF thành công | Critical | P1 | Report |
+
+---
+
+# Bảng III: Unit Testing - Hộp Trắng (White-box Testing)
 *(Mục tiêu: Đạt độ phủ lệnh (Statement Coverage) & độ phủ nhánh (Branch Coverage) 100% cho hàm `checkBudgetStatus`)*
 
 | ID | Kỹ thuật | Đối tượng kiểm tra | Kịch bản/Dữ liệu đầu vào | Kết quả mong đợi (Expected) |
